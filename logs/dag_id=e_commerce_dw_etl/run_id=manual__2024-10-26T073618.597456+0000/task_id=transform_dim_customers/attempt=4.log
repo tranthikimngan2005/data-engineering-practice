@@ -1,0 +1,34 @@
+[2024-10-26T07:41:08.707+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-26T07:41:08.743+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.transform_dim_customers manual__2024-10-26T07:36:18.597456+00:00 [queued]>
+[2024-10-26T07:41:08.755+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.transform_dim_customers manual__2024-10-26T07:36:18.597456+00:00 [queued]>
+[2024-10-26T07:41:08.756+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
+[2024-10-26T07:41:08.774+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): transform_dim_customers> on 2024-10-26 07:36:18.597456+00:00
+[2024-10-26T07:41:08.779+0000] {standard_task_runner.py:63} INFO - Started process 712 to run task
+[2024-10-26T07:41:08.781+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'transform_dim_customers', 'manual__2024-10-26T07:36:18.597456+00:00', '--job-id', '701', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmpl0y809lg']
+[2024-10-26T07:41:08.783+0000] {standard_task_runner.py:91} INFO - Job 701: Subtask transform_dim_customers
+[2024-10-26T07:41:08.837+0000] {task_command.py:426} INFO - Running <TaskInstance: e_commerce_dw_etl.transform_dim_customers manual__2024-10-26T07:36:18.597456+00:00 [running]> on host eed3011aebc3
+[2024-10-26T07:41:08.941+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='transform_dim_customers' AIRFLOW_CTX_EXECUTION_DATE='2024-10-26T07:36:18.597456+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-26T07:36:18.597456+00:00'
+[2024-10-26T07:41:08.943+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-26T07:41:08.965+0000] {base.py:84} INFO - Using connection ID 'postgres' for task execution.
+[2024-10-26T07:41:08.984+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/providers/common/sql/hooks/sql.py:263 UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+[2024-10-26T07:41:09.001+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-26T07:41:09.001+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/transform_dim_customers.py", line 23, in transform_dim_customers
+    future_date = current_date + timedelta(years=10)  # Sử dụng ngày 10 năm trong tương lai thay vì 9999-12-31
+TypeError: 'years' is an invalid keyword argument for __new__()
+[2024-10-26T07:41:09.015+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=transform_dim_customers, run_id=manual__2024-10-26T07:36:18.597456+00:00, execution_date=20241026T073618, start_date=20241026T074108, end_date=20241026T074109
+[2024-10-26T07:41:09.030+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 701 for task transform_dim_customers ('years' is an invalid keyword argument for __new__(); 712)
+[2024-10-26T07:41:09.075+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-10-26T07:41:09.099+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-26T07:41:09.106+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
