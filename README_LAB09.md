@@ -1,5 +1,15 @@
-# LAB 09 - ULTIMATE PRACTICE
+# Data Engineering Practice - Group Report
 
-##  Nhóm thực hiện:
-- Trần Thị Kim Ngân – 23791511
-- Trần Quốc Sang – 23715111
+## Thông tin nhóm
+- Trần Thị Kim Ngân - MSSV: 23719511  
+- [Tên thành viên 2] - MSSV: [MSSV thành viên 2]  
+- [Tên thành viên 3] - MSSV: [MSSV thành viên 3]  
+
+## Mô tả repository
+Đây là repository của nhóm thực hiện các bài tập từ Exercise 1 đến Exercise 5 trong môn Data Engineering Practice. Repository bao gồm các file bài tập, pipeline tự động và báo cáo chi tiết.
+
+## Báo cáo chi tiết
+Xem báo cáo các bài tập tại [report.md](report.md).
+
+## Pipeline tự động
+Pipeline tự động chạy các bài tập 1-5 được lưu tại [pipeline.py](pipeline.py).
