@@ -2,8 +2,7 @@
 
 ## Thông tin nhóm
 - Trần Thị Kim Ngân - MSSV: 23719511  
-- [Tên thành viên 2] - MSSV: [MSSV thành viên 2]  
-- [Tên thành viên 3] - MSSV: [MSSV thành viên 3]  
+- Trần Quốc Sang - MSSV: 23715111  
 
 ## Mô tả repository
 Đây là repository của nhóm thực hiện các bài tập từ Exercise 1 đến Exercise 5 trong môn Data Engineering Practice. Repository bao gồm các file bài tập, pipeline tự động và báo cáo chi tiết.
