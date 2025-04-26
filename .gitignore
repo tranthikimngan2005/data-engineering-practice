@@ -1,3 +1,2 @@
-*.idea*
-*.DS_Store*
-*postgres-data*
+# Ignore all CSV files in downloads folders
+**/downloads/*.csv
