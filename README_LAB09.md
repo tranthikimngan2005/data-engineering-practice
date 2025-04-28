@@ -11,4 +11,4 @@
 Xem báo cáo các bài tập tại [report.md](report.md).
 
 ## Pipeline tự động
-Pipeline tự động chạy các bài tập 1-5 được lưu tại [pipeline.py](pipeline.py).
+Pipeline tự động chạy các bài tập 1-5 được lưu tại [run.py](run.py).
