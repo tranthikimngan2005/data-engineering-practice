@@ -77,12 +77,12 @@ Dựa vào các file CSV, thiết kế lược đồ dữ liệu, tạo bảng, 
 8. Lưu lại thiết kế schema trong file `schema.sql` hoặc tài liệu markdown.
 
 
-# Bài tập 6 - Nhập Dữ Liệu và Tổng Hợp với PySpark
+## Bài tập 6 - Nhập Dữ Liệu và Tổng Hợp với PySpark
 
-## Mục tiêu:
+**Mục tiêu:**  
 Sử dụng PySpark để xử lý và tổng hợp dữ liệu lớn từ các tệp CSV.
 
-## Các bước thực hiện:
+**Các bước thực hiện:**
 
 1. Truy cập thư mục `Exercises/Exercise-6`.
 
@@ -105,13 +105,13 @@ Sử dụng PySpark để xử lý và tổng hợp dữ liệu lớn từ các 
 
 7. In kết quả hoặc lưu dữ liệu đã xử lý vào một tệp đầu ra, chẳng hạn như CSV hoặc Parquet.
 
-# Bài tập 7 - Sử dụng Các Hàm PySpark Khác Nhau
+## Bài tập 7 - Sử dụng Các Hàm PySpark Khác Nhau
 
-## Mục tiêu:
+**Mục tiêu:**  
 
 Giải quyết bài toán sử dụng các hàm có sẵn trong `spark.sql.functions`, không sử dụng UDF hay các phương thức Python khác.
 
-## Các bước thực hiện:
+**Các bước thực hiện:**
 
 1. Truy cập thư mục `Exercises/Exercise-7`.
 
