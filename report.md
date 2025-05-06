@@ -76,7 +76,71 @@ Dựa vào các file CSV, thiết kế lược đồ dữ liệu, tạo bảng, 
 7. Thực hiện một số truy vấn kiểm tra như: đếm số dòng, kiểm tra ràng buộc khóa chính.
 8. Lưu lại thiết kế schema trong file `schema.sql` hoặc tài liệu markdown.
 
----
+
+# Bài tập 6 - Nhập Dữ Liệu và Tổng Hợp với PySpark
+
+## Mục tiêu:
+Sử dụng PySpark để xử lý và tổng hợp dữ liệu lớn từ các tệp CSV.
+
+## Các bước thực hiện:
+
+1. Truy cập thư mục `Exercises/Exercise-6`.
+
+2. Xây dựng Docker image bằng lệnh:
+   ```bash
+   docker build --tag=exercise-6 .
+````
+
+3. Thực hiện kiểm tra thử với lệnh sau để chạy Docker container:
+
+   ```bash
+   docker-compose up run
+   ```
+
+4. Thực hiện nhập dữ liệu từ các tệp `.zip` trong thư mục `data`. Các tệp này cần được giữ nguyên trạng thái nén trong suốt quá trình xử lý.
+
+5. Dùng PySpark để giải nén và đọc dữ liệu từ các tệp CSV, sử dụng `spark.read.csv()` hoặc các phương thức thích hợp khác.
+
+6. Tiến hành các bước xử lý dữ liệu cần thiết: lọc, nhóm, tính toán tổng hợp, v.v.
+
+7. In kết quả hoặc lưu dữ liệu đã xử lý vào một tệp đầu ra, chẳng hạn như CSV hoặc Parquet.
+
+# Bài tập 7 - Sử dụng Các Hàm PySpark Khác Nhau
+
+## Mục tiêu:
+
+Giải quyết bài toán sử dụng các hàm có sẵn trong `spark.sql.functions`, không sử dụng UDF hay các phương thức Python khác.
+
+## Các bước thực hiện:
+
+1. Truy cập thư mục `Exercises/Exercise-7`.
+
+2. Xây dựng Docker image bằng lệnh:
+
+   ```bash
+   docker build --tag=exercise-7 .
+   ```
+
+3. Thực hiện kiểm tra thử với lệnh sau để chạy Docker container:
+
+   ```bash
+   docker-compose up run
+   ```
+
+4. Thực hiện nhập dữ liệu từ tệp `hard-drive-2022-01-01-failures.csv.zip` trong thư mục `data`. Tệp này cần được giữ nguyên trạng thái nén trong suốt quá trình xử lý.
+
+5. Dùng PySpark để giải nén và đọc dữ liệu từ tệp `.csv` nén.
+
+6. Sử dụng các hàm trong `spark.sql.functions` để xử lý dữ liệu, bao gồm:
+
+   * **Lọc dữ liệu:** sử dụng `filter()` hoặc `where()`.
+   * **Tính toán tổng hợp:** sử dụng `sum()`, `avg()`, `count()`, v.v.
+   * **Nhóm dữ liệu:** sử dụng `groupBy()` và các hàm nhóm khác.
+   * **Chuyển đổi dữ liệu:** sử dụng các hàm như `withColumn()`, `cast()`, v.v.
+
+7. In kết quả hoặc lưu dữ liệu đã xử lý vào tệp đầu ra.
+
+
 
 ## Thành viên thực hiện
 
