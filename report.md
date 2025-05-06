@@ -87,15 +87,10 @@ Sử dụng PySpark để xử lý và tổng hợp dữ liệu lớn từ các 
 1. Truy cập thư mục `Exercises/Exercise-6`.
 
 2. Xây dựng Docker image bằng lệnh:
-   ```bash
    docker build --tag=exercise-6 .
-````
 
 3. Thực hiện kiểm tra thử với lệnh sau để chạy Docker container:
-
-   ```bash
    docker-compose up run
-   ```
 
 4. Thực hiện nhập dữ liệu từ các tệp `.zip` trong thư mục `data`. Các tệp này cần được giữ nguyên trạng thái nén trong suốt quá trình xử lý.
 
