@@ -1,0 +1,374 @@
+[2025-05-06T14:41:36.511+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-06T14:41:36.529+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-06T14:41:36.530+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-05-06T14:41:36.556+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract.extract_and_load_to_staging> on 2024-12-12 00:00:00+00:00
+[2025-05-06T14:41:36.562+0000] {standard_task_runner.py:60} INFO - Started process 1271 to run task
+[2025-05-06T14:41:36.567+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'extract.extract_and_load_to_staging', 'scheduled__2024-12-12T00:00:00+00:00', '--job-id', '50', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmp8x7nvqdk']
+[2025-05-06T14:41:36.571+0000] {standard_task_runner.py:88} INFO - Job 50: Subtask extract.extract_and_load_to_staging
+[2025-05-06T14:41:36.776+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-05-06T14:41:36.816+0000] {task_command.py:423} INFO - Running <TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [running]> on host 4e8b8c3535ca
+[2025-05-06T14:41:36.936+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='extract.extract_and_load_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-12T00:00:00+00:00'
+[2025-05-06T14:41:36.951+0000] {mysql_operator.py:13} ERROR - Can't connect to mysql database
+[2025-05-06T14:41:36.975+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract_data.py", line 30, in extract_and_load_to_staging
+    df = source_operator.get_data_to_pd(f"SELECT * FROM {table}")
+  File "/opt/airflow/plugins/mysql_operator.py", line 15, in get_data_to_pd
+    return self.mysqlhook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 220, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/mysql/hooks/mysql.py", line 187, in get_conn
+    conn = self.connection or self.get_connection(getattr(self, self.conn_name_attr))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/hooks/base.py", line 82, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 479, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `mysql` isn't defined
+[2025-05-06T14:41:36.986+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=extract.extract_and_load_to_staging, execution_date=20241212T000000, start_date=20250506T144136, end_date=20250506T144136
+[2025-05-06T14:41:37.002+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 50 for task extract.extract_and_load_to_staging (The conn_id `mysql` isn't defined; 1271)
+[2025-05-06T14:41:37.020+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-05-06T14:41:37.282+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-08T10:43:26.264+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T10:43:26.276+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T10:43:26.276+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-05-08T10:43:26.304+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract.extract_and_load_to_staging> on 2024-12-12 00:00:00+00:00
+[2025-05-08T10:43:26.311+0000] {standard_task_runner.py:60} INFO - Started process 449 to run task
+[2025-05-08T10:43:26.316+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'extract.extract_and_load_to_staging', 'scheduled__2024-12-12T00:00:00+00:00', '--job-id', '736', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmp4u7bf35f']
+[2025-05-08T10:43:26.320+0000] {standard_task_runner.py:88} INFO - Job 736: Subtask extract.extract_and_load_to_staging
+[2025-05-08T10:43:26.557+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-05-08T10:43:26.604+0000] {task_command.py:423} INFO - Running <TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [running]> on host 274dc1d73528
+[2025-05-08T10:43:26.712+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='extract.extract_and_load_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-12T00:00:00+00:00'
+[2025-05-08T10:43:26.730+0000] {mysql_operator.py:13} ERROR - Can't connect to mysql database
+[2025-05-08T10:43:26.753+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract_data.py", line 30, in extract_and_load_to_staging
+    df = source_operator.get_data_to_pd(f"SELECT * FROM {table}")
+  File "/opt/airflow/plugins/mysql_operator.py", line 15, in get_data_to_pd
+    return self.mysqlhook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 220, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/mysql/hooks/mysql.py", line 187, in get_conn
+    conn = self.connection or self.get_connection(getattr(self, self.conn_name_attr))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/hooks/base.py", line 82, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 479, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `mysql` isn't defined
+[2025-05-08T10:43:26.770+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=extract.extract_and_load_to_staging, execution_date=20241212T000000, start_date=20250508T104326, end_date=20250508T104326
+[2025-05-08T10:43:26.871+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 736 for task extract.extract_and_load_to_staging (The conn_id `mysql` isn't defined; 449)
+[2025-05-08T10:43:26.894+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-05-08T10:43:27.096+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-08T11:05:56.295+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:05:56.308+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:05:56.309+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-05-08T11:05:56.334+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract.extract_and_load_to_staging> on 2024-12-12 00:00:00+00:00
+[2025-05-08T11:05:56.347+0000] {standard_task_runner.py:60} INFO - Started process 392 to run task
+[2025-05-08T11:05:56.367+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'extract.extract_and_load_to_staging', 'scheduled__2024-12-12T00:00:00+00:00', '--job-id', '934', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmp32a5yqod']
+[2025-05-08T11:05:56.371+0000] {standard_task_runner.py:88} INFO - Job 934: Subtask extract.extract_and_load_to_staging
+[2025-05-08T11:05:56.659+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-05-08T11:05:56.726+0000] {task_command.py:423} INFO - Running <TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [running]> on host 14e98ede325e
+[2025-05-08T11:05:56.864+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='extract.extract_and_load_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-12T00:00:00+00:00'
+[2025-05-08T11:05:56.876+0000] {mysql_operator.py:13} ERROR - Can't connect to mysql database
+[2025-05-08T11:05:56.903+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract_data.py", line 30, in extract_and_load_to_staging
+    df = source_operator.get_data_to_pd(f"SELECT * FROM {table}")
+  File "/opt/airflow/plugins/mysql_operator.py", line 15, in get_data_to_pd
+    return self.mysqlhook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 220, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/mysql/hooks/mysql.py", line 187, in get_conn
+    conn = self.connection or self.get_connection(getattr(self, self.conn_name_attr))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/hooks/base.py", line 82, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 479, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `mysql` isn't defined
+[2025-05-08T11:05:56.922+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=extract.extract_and_load_to_staging, execution_date=20241212T000000, start_date=20250508T110556, end_date=20250508T110556
+[2025-05-08T11:05:56.948+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 934 for task extract.extract_and_load_to_staging (The conn_id `mysql` isn't defined; 392)
+[2025-05-08T11:05:56.984+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-05-08T11:05:57.290+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-08T11:08:59.145+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:08:59.158+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:08:59.159+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-05-08T11:08:59.187+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract.extract_and_load_to_staging> on 2024-12-12 00:00:00+00:00
+[2025-05-08T11:08:59.196+0000] {standard_task_runner.py:60} INFO - Started process 902 to run task
+[2025-05-08T11:08:59.200+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'extract.extract_and_load_to_staging', 'scheduled__2024-12-12T00:00:00+00:00', '--job-id', '1129', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmpks__jgmm']
+[2025-05-08T11:08:59.203+0000] {standard_task_runner.py:88} INFO - Job 1129: Subtask extract.extract_and_load_to_staging
+[2025-05-08T11:08:59.453+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-05-08T11:08:59.506+0000] {task_command.py:423} INFO - Running <TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [running]> on host 14e98ede325e
+[2025-05-08T11:08:59.611+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='extract.extract_and_load_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-12T00:00:00+00:00'
+[2025-05-08T11:08:59.627+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-05-08T11:08:59.629+0000] {connection.py:473} ERROR - Unable to retrieve connection from secrets backend (MetastoreBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 468, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 42, in get_connection
+    return MetastoreBackend._fetch_connection(conn_id, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/api_internal/internal_api_call.py", line 114, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 73, in _fetch_connection
+    conn = session.scalar(select(Connection).where(Connection.conn_id == conn_id).limit(1))
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1276, in scalar
+    return self._only_one_row(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 559, in _only_one_row
+    row = onerow(hard_close=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1801, in _fetchone_impl
+    row = next(self.iterator, _NO_ROW)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in chunks
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in <listcomp>
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 984, in _instance
+    state.manager.dispatch.load(state, context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/event/attr.py", line 346, in __call__
+    fn(*args, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 3702, in _event_on_load
+    instrumenting_mapper._reconstructor(state.obj())
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 174, in on_db_load
+    if self.password:
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/attributes.py", line 606, in __get__
+    retval = self.descriptor.__get__(instance, owner)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 296, in get_password
+    raise AirflowException(
+airflow.exceptions.AirflowException: Can't decrypt encrypted password for login=***  FERNET_KEY configuration is missing
+[2025-05-08T11:08:59.634+0000] {mysql_operator.py:13} ERROR - Can't connect to mysql database
+[2025-05-08T11:08:59.643+0000] {connection.py:473} ERROR - Unable to retrieve connection from secrets backend (MetastoreBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 468, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 42, in get_connection
+    return MetastoreBackend._fetch_connection(conn_id, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/api_internal/internal_api_call.py", line 114, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 73, in _fetch_connection
+    conn = session.scalar(select(Connection).where(Connection.conn_id == conn_id).limit(1))
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1276, in scalar
+    return self._only_one_row(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 559, in _only_one_row
+    row = onerow(hard_close=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1801, in _fetchone_impl
+    row = next(self.iterator, _NO_ROW)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in chunks
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in <listcomp>
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 984, in _instance
+    state.manager.dispatch.load(state, context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/event/attr.py", line 346, in __call__
+    fn(*args, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 3702, in _event_on_load
+    instrumenting_mapper._reconstructor(state.obj())
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 174, in on_db_load
+    if self.password:
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/attributes.py", line 606, in __get__
+    retval = self.descriptor.__get__(instance, owner)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 296, in get_password
+    raise AirflowException(
+airflow.exceptions.AirflowException: Can't decrypt encrypted password for login=***  FERNET_KEY configuration is missing
+[2025-05-08T11:08:59.658+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract_data.py", line 30, in extract_and_load_to_staging
+    df = source_operator.get_data_to_pd(f"SELECT * FROM {table}")
+  File "/opt/airflow/plugins/mysql_operator.py", line 15, in get_data_to_pd
+    return self.mysqlhook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 220, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/mysql/hooks/mysql.py", line 187, in get_conn
+    conn = self.connection or self.get_connection(getattr(self, self.conn_name_attr))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/hooks/base.py", line 82, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 479, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `mysql` isn't defined
+[2025-05-08T11:08:59.674+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=extract.extract_and_load_to_staging, execution_date=20241212T000000, start_date=20250508T110859, end_date=20250508T110859
+[2025-05-08T11:08:59.695+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 1129 for task extract.extract_and_load_to_staging (The conn_id `mysql` isn't defined; 902)
+[2025-05-08T11:08:59.740+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-05-08T11:08:59.955+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-08T11:14:54.094+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:14:54.110+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:14:54.111+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-05-08T11:14:54.140+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract.extract_and_load_to_staging> on 2024-12-12 00:00:00+00:00
+[2025-05-08T11:14:54.148+0000] {standard_task_runner.py:60} INFO - Started process 329 to run task
+[2025-05-08T11:14:54.153+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'extract.extract_and_load_to_staging', 'scheduled__2024-12-12T00:00:00+00:00', '--job-id', '1324', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmpmjfhzlhe']
+[2025-05-08T11:14:54.157+0000] {standard_task_runner.py:88} INFO - Job 1324: Subtask extract.extract_and_load_to_staging
+[2025-05-08T11:14:54.364+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-05-08T11:14:54.410+0000] {task_command.py:423} INFO - Running <TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [running]> on host 3623a279d4d4
+[2025-05-08T11:14:54.552+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='extract.extract_and_load_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-12T00:00:00+00:00'
+[2025-05-08T11:14:54.569+0000] {mysql_operator.py:13} ERROR - Can't connect to mysql_default database
+[2025-05-08T11:14:54.591+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract_data.py", line 30, in extract_and_load_to_staging
+    df = source_operator.get_data_to_pd(f"SELECT * FROM {table}")
+  File "/opt/airflow/plugins/mysql_operator.py", line 15, in get_data_to_pd
+    return self.mysqlhook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 220, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/mysql/hooks/mysql.py", line 187, in get_conn
+    conn = self.connection or self.get_connection(getattr(self, self.conn_name_attr))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/hooks/base.py", line 82, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 479, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `mysql_default` isn't defined
+[2025-05-08T11:14:54.606+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=extract.extract_and_load_to_staging, execution_date=20241212T000000, start_date=20250508T111454, end_date=20250508T111454
+[2025-05-08T11:14:54.681+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 1324 for task extract.extract_and_load_to_staging (The conn_id `mysql_default` isn't defined; 329)
+[2025-05-08T11:14:54.732+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-05-08T11:14:54.994+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-05-08T11:20:03.055+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:20:03.070+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [queued]>
+[2025-05-08T11:20:03.071+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-05-08T11:20:03.100+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract.extract_and_load_to_staging> on 2024-12-12 00:00:00+00:00
+[2025-05-08T11:20:03.111+0000] {standard_task_runner.py:60} INFO - Started process 1124 to run task
+[2025-05-08T11:20:03.115+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'extract.extract_and_load_to_staging', 'scheduled__2024-12-12T00:00:00+00:00', '--job-id', '1619', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmpfzziqfmt']
+[2025-05-08T11:20:03.118+0000] {standard_task_runner.py:88} INFO - Job 1619: Subtask extract.extract_and_load_to_staging
+[2025-05-08T11:20:03.410+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-05-08T11:20:03.472+0000] {task_command.py:423} INFO - Running <TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging scheduled__2024-12-12T00:00:00+00:00 [running]> on host 3623a279d4d4
+[2025-05-08T11:20:03.634+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='extract.extract_and_load_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-12T00:00:00+00:00'
+[2025-05-08T11:20:03.659+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-05-08T11:20:03.662+0000] {connection.py:473} ERROR - Unable to retrieve connection from secrets backend (MetastoreBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 468, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 42, in get_connection
+    return MetastoreBackend._fetch_connection(conn_id, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/api_internal/internal_api_call.py", line 114, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 73, in _fetch_connection
+    conn = session.scalar(select(Connection).where(Connection.conn_id == conn_id).limit(1))
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1276, in scalar
+    return self._only_one_row(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 559, in _only_one_row
+    row = onerow(hard_close=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1801, in _fetchone_impl
+    row = next(self.iterator, _NO_ROW)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in chunks
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in <listcomp>
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 984, in _instance
+    state.manager.dispatch.load(state, context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/event/attr.py", line 346, in __call__
+    fn(*args, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 3702, in _event_on_load
+    instrumenting_mapper._reconstructor(state.obj())
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 174, in on_db_load
+    if self.password:
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/attributes.py", line 606, in __get__
+    retval = self.descriptor.__get__(instance, owner)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 296, in get_password
+    raise AirflowException(
+airflow.exceptions.AirflowException: Can't decrypt encrypted password for login=***  FERNET_KEY configuration is missing
+[2025-05-08T11:20:03.671+0000] {mysql_operator.py:13} ERROR - Can't connect to mysql database
+[2025-05-08T11:20:03.693+0000] {connection.py:473} ERROR - Unable to retrieve connection from secrets backend (MetastoreBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 468, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 42, in get_connection
+    return MetastoreBackend._fetch_connection(conn_id, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/api_internal/internal_api_call.py", line 114, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/secrets/metastore.py", line 73, in _fetch_connection
+    conn = session.scalar(select(Connection).where(Connection.conn_id == conn_id).limit(1))
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1276, in scalar
+    return self._only_one_row(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 559, in _only_one_row
+    row = onerow(hard_close=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1801, in _fetchone_impl
+    row = next(self.iterator, _NO_ROW)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in chunks
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 151, in <listcomp>
+    rows = [proc(row) for row in fetch]
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 984, in _instance
+    state.manager.dispatch.load(state, context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/event/attr.py", line 346, in __call__
+    fn(*args, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/mapper.py", line 3702, in _event_on_load
+    instrumenting_mapper._reconstructor(state.obj())
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 174, in on_db_load
+    if self.password:
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/attributes.py", line 606, in __get__
+    retval = self.descriptor.__get__(instance, owner)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 296, in get_password
+    raise AirflowException(
+airflow.exceptions.AirflowException: Can't decrypt encrypted password for login=***  FERNET_KEY configuration is missing
+[2025-05-08T11:20:03.720+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract_data.py", line 30, in extract_and_load_to_staging
+    df = source_operator.get_data_to_pd(f"SELECT * FROM {table}")
+  File "/opt/airflow/plugins/mysql_operator.py", line 15, in get_data_to_pd
+    return self.mysqlhook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 220, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/mysql/hooks/mysql.py", line 187, in get_conn
+    conn = self.connection or self.get_connection(getattr(self, self.conn_name_attr))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/hooks/base.py", line 82, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/connection.py", line 479, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `mysql` isn't defined
+[2025-05-08T11:20:03.744+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=extract.extract_and_load_to_staging, execution_date=20241212T000000, start_date=20250508T112003, end_date=20250508T112003
+[2025-05-08T11:20:03.922+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 1619 for task extract.extract_and_load_to_staging (The conn_id `mysql` isn't defined; 1124)
+[2025-05-08T11:20:03.983+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-05-08T11:20:04.253+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

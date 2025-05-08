@@ -1,0 +1,38 @@
+[2025-05-08T11:26:15.008+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging manual__2025-05-08T11:26:13.733748+00:00 [queued]>
+[2025-05-08T11:26:15.016+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging manual__2025-05-08T11:26:13.733748+00:00 [queued]>
+[2025-05-08T11:26:15.017+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-05-08T11:26:15.029+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract.extract_and_load_to_staging> on 2025-05-08 11:26:13.733748+00:00
+[2025-05-08T11:26:15.033+0000] {standard_task_runner.py:60} INFO - Started process 213 to run task
+[2025-05-08T11:26:15.036+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'e_commerce_dw_etl', 'extract.extract_and_load_to_staging', 'manual__2025-05-08T11:26:13.733748+00:00', '--job-id', '1767', '--raw', '--subdir', 'DAGS_FOLDER/e_commerce_dw_dag.py', '--cfg-path', '/tmp/tmpw0z6jis4']
+[2025-05-08T11:26:15.038+0000] {standard_task_runner.py:88} INFO - Job 1767: Subtask extract.extract_and_load_to_staging
+[2025-05-08T11:26:15.051+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-05-08T11:26:15.184+0000] {task_command.py:423} INFO - Running <TaskInstance: e_commerce_dw_etl.extract.extract_and_load_to_staging manual__2025-05-08T11:26:13.733748+00:00 [running]> on host bcedcfea4bee
+[2025-05-08T11:26:15.242+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='e_commerce_dw_etl' AIRFLOW_CTX_TASK_ID='extract.extract_and_load_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2025-05-08T11:26:13.733748+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-08T11:26:13.733748+00:00'
+[2025-05-08T11:26:15.252+0000] {base.py:83} INFO - Using connection ID 'mysql' for task execution.
+[2025-05-08T11:26:15.271+0000] {mysql_operator.py:13} ERROR - Can't connect to mysql database
+[2025-05-08T11:26:15.277+0000] {base.py:83} INFO - Using connection ID 'mysql' for task execution.
+[2025-05-08T11:26:15.279+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract_data.py", line 30, in extract_and_load_to_staging
+    df = source_operator.get_data_to_pd(f"SELECT * FROM {table}")
+  File "/opt/airflow/plugins/mysql_operator.py", line 15, in get_data_to_pd
+    return self.mysqlhook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 220, in get_pandas_df
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/mysql/hooks/mysql.py", line 195, in get_conn
+    return MySQLdb.connect(**conn_config)
+  File "/home/airflow/.local/lib/python3.8/site-packages/MySQLdb/__init__.py", line 121, in Connect
+    return Connection(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/MySQLdb/connections.py", line 193, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb.OperationalError: (1044, "Access denied for user '***'@'%' to database 'e_commerce'")
+[2025-05-08T11:26:15.293+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=e_commerce_dw_etl, task_id=extract.extract_and_load_to_staging, execution_date=20250508T112613, start_date=20250508T112615, end_date=20250508T112615
+[2025-05-08T11:26:15.303+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 1767 for task extract.extract_and_load_to_staging ((1044, "Access denied for user '***'@'%' to database 'e_commerce'"); 213)
+[2025-05-08T11:26:15.329+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-05-08T11:26:15.444+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
